@@ -6,44 +6,47 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
-  <div class="keys">
-    <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">clap</span>
-    </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
+  <div class="layer">
+  <h1>#JavaScript 30 Drum Example</h1>
+    <div class="drums">
+      <div class="drumkit">
+        <div class="drum" data-key="65"> 
+          <div class="drum-note">A</div>
+          <div class="drum-sound">Clap</div>
+        </div>
+        <div class="drum" data-key="83"> 
+          <div class="drum-note">S</div>
+          <div class="drum-sound">HiHat</div>
+        </div>
+        <div class="drum" data-key="68">
+          <div class="drum-note">D</div>
+          <div class="drum-sound">Kick</div>
+        </div>
+        <div class="drum" data-key="70"> 
+          <div class="drum-note">F</div>
+          <div class="drum-sound">OpenHat</div>
+        </div>
+        <div class="drum" data-key="71"> 
+          <div class="drum-note">G</div>
+          <div class="drum-sound">Boom</div>
+        </div>
+        <div class="drum" data-key="72"> 
+          <div class="drum-note">H</div>
+          <div class="drum-sound">Ride</div>
+        </div>
+        <div class="drum" data-key="74"> 
+          <div class="drum-note">J</div>
+          <div class="drum-sound">Snare</div>
+        </div>
+        <div class="drum" data-key="75"> 
+          <div class="drum-note">K</div>
+          <div class="drum-sound">Tom</div>
+        </div>
+        <div class="drum" data-key="76"> 
+          <div class="drum-note">L</div>
+          <div class="drum-sound">Tink</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -59,6 +62,15 @@
 
 <script>
 
+    var drum = document.getElementsByClassName('drum');
+    for(var i = 0; i < drum.length; i++) {
+      var drumAttr = drum[i].getAttribute('data-key');
+      var drumEl = drum[i];
+      var self = this;
+      drumEl.addEventListener('click', function(event) {
+        console.log(event.target.getAttribute('data-key'));
+      }.bind(this), false);
+    }
 </script>
 
 

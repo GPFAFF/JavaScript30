@@ -1,50 +1,67 @@
-html {
-  font-size: 10px;
-  background:url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: url(http://pearldrum.com/common/assets/images/background.jpg);
+  background-position: center center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
-body,html {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
-.keys {
-  display:flex;
-  flex:1;
-  min-height:100vh;
-  align-items: center;
-  justify-content: center;
+.layer {
+  background-color: rgba(85, 85, 85, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.key {
-  border:4px solid black;
-  border-radius:5px;
-  margin:1rem;
-  font-size: 1.5rem;
-  padding:1rem .5rem;
-  transition:all .07s;
-  width:100px;
-  text-align: center;
-  color:white;
-  background:rgba(0,0,0,0.4);
-  text-shadow:0 0 5px black;
-}
-
-.playing {
-  transform:scale(1.1);
-  border-color:#ffc600;
-  box-shadow: 0 0 10px #ffc600;
-}
-
-kbd {
-  display: block;
-  font-size: 40px;
-}
-
-.sound {
-  font-size: 1.2rem;
+h1 {
+  color: white;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color:#ffc600;
+  text-align: center;
+  text-shadow: 2px 2px 2px black;
 }
+
+.drums {
+  margin-top: 50px;
+  width: 100%;
+  height: 100px;
+  margin: 120px auto;
+}
+.drums .drumkit {
+  text-align: center;
+  vertical-align: middle;
+}
+.drums .drumkit .drum {
+  border: 4px solid black;
+  width: 90px;
+  height: 80px;
+  display: inline-block;
+  margin: 10px;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+.drums .drumkit .drum:hover {
+  box-shadow: 0 0 10px #fff;
+  transition: ease-in 0.25s;
+}
+.drums .drumkit .drum-note {
+  display: block;
+  text-transform: uppercase;
+  margin-top: 10px;
+  color: white;
+  font-family: serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+.drums .drumkit .drum-sound {
+  text-transform: uppercase;
+  margin-top: 10px;
+  color: #ffc600;
+  font-size: 12px;
+}
+
