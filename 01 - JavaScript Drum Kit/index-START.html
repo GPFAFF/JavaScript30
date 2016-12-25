@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="layer">
-  <h1>#JavaScript 30 Drum Example</h1>
+  <h1>#JavaScript30 Drum Example</h1>
     <div class="drums">
       <div class="drumkit">
         <div class="drum" data-key="65"> 
@@ -63,14 +63,32 @@
 <script>
 
     var drum = document.getElementsByClassName('drum');
-    for(var i = 0; i < drum.length; i++) {
+    var audio = document.getElementsByTagName('audio');
+
+
+    for (var i = 0; i < drum.length; i++) {
       var drumAttr = drum[i].getAttribute('data-key');
       var drumEl = drum[i];
-      var self = this;
-      drumEl.addEventListener('click', function(event) {
-        console.log(event.target.getAttribute('data-key'));
-      }.bind(this));
+      console.log(drumEl);
+      for (var j = 0; j < audio.length; j++) {
+        var audioEl = audio[j];
+        console.log(audioEl);
+      }
+      this.addEventListener("keyup", function(e) {
+        if (e.keyCode == 65) {
+          console.log(e.keyCode);
+        }
+      })
     }
+
+    
+    //drumEl.addEventListener('click', drumLoop, false);
+    //drum.addEventListener('click', drumLoop, false);
+   /* drumEl.addEventListener("keyup", function(event) {
+      if (event.keyCode == 65) {
+        console.log("Clicked");
+      }
+    })*/
 </script>
 
 
