@@ -62,28 +62,34 @@
 
 <script>
 
+  // keydown listener
   window.addEventListener('keydown', drummer);
 
   function removeTransition(e) {
+    // if propertyName is not a transform end function
     if (e.propertyName !== 'transform') return;
-    console.log(e.propertyName);
+    // add remove class of playing on the elem that called it
     this.classList.remove('playing');
   }
 
   function drummer(e) {
-    console.log(e.keyCode);
 
+    // sets up constants
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"`);
     const drum = document.querySelector(`div[data-key="${e.keyCode}"`);
 
+    // if not an audio tag end function
     if (!audio) return;
+    // reset play time to 0
     audio.currentTime = 0;
+    // play corresponding audio tag
     audio.play();
+    // add playing class for css effect
     drum.classList.add('playing');
   }
 
-  //drum loop
-  
+  //drum loop and transitionend key
+
   const drums = document.querySelectorAll('.drum');
   drums.forEach(drum => drum.addEventListener('transitionend', removeTransition));
       
