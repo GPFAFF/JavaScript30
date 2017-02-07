@@ -50,7 +50,7 @@
       const birthAge = firstPerson.passed - firstPerson.year;
       const secondAge = lastPerson.passed - lastPerson.year;
 
-      if (birthAge > secondAge) {
+      if (secondAge > birthAge) {
         return 1;
       } else {
           return -1;
@@ -60,6 +60,9 @@
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+
+    const lifeSpan = inventors.reduce((inventors) => {
+    })
 
     // 5. Sort the inventors by years lived
 
