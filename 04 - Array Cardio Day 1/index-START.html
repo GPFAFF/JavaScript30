@@ -38,10 +38,8 @@
     // Array.prototype.map()
     // 2. Give us an array of the inventory first and last names
 
-    const fullNames = inventors.map((inventors) => {
-      return `${inventors.first} ${inventors.last}`;
-    });
-    console.table(fullNames);
+    const fullNames = inventors.map((inventor) => `${inventor.first} ${inventor.last}`);
+    console.log(fullNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
@@ -50,11 +48,8 @@
       const birthAge = firstPerson.passed - firstPerson.year;
       const secondAge = lastPerson.passed - lastPerson.year;
 
-      if (secondAge > birthAge) {
-        return 1;
-      } else {
-          return -1;
-      }
+      return secondAge > birthAge ? 1 : -1;
+
     });
     console.table(sortedInvetors);
 
@@ -82,40 +77,36 @@
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
     // gets class
-    const boulevards = document.querySelector('.mw-category');
+    //const boulevards = document.querySelector('.mw-category');
     // uses spread operator, spreads all links into an array
-    const links =  Array.from(boulevards.querySelectorAll('a'));
+    //const links =  Array.from(boulevards.querySelectorAll('a'));
 
-    const de = links.map((link) => link.textContent);
+    //const de = links.map((link) => link.textContent);
 
-    const streetFilter = de.filter((streetName) => {
-      return streetName.includes('de');
-    });
+    // const streetFilter = de.filter((streetName) => {
+    //   return streetName.includes('de');
+    // });
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
-    const alphaBetical = people.sort((last, first) =>{
+    const alphaBetical = people.sort((last, first) => {
       const [aLast, aFirst] = last.split(', ');
       const [bLast, bFirst] = first.split(', ');
 
       return aLast > bLast ? 1 : -1;
+    });
 
-    })
     console.log(alphaBetical);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'cooper' ];
 
     const numVehichles = data.reduce((obj, val) => {
       if (!obj[val]) {
-        obj[val]
+        obj[val] = 0;
       }
-      else if (val in obj) {
-        obj[val]++;
-      } else {
-        obj[val] = 1;
-      }
+      obj[val]++;
       return obj;
     }, {});
 
