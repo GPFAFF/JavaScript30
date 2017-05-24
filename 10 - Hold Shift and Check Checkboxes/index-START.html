@@ -104,6 +104,31 @@
   </div>
 
 <script>
+  const checkBoxes = Array.from(document.getElementsByTagName('input'));
+  let checked = false;
+  console.log(checkBoxes);
+
+  checkBoxes.forEach((checkbox) => {
+    console.log(checkbox);
+    checkbox.addEventListener('click', (event) => {
+      if ('input') {
+        checkbox.setAttribute('data-value', 'checked');
+      } else {
+        checkbox.removeAttribute('data-value', 'checked');
+      }
+    })
+  });
+
+
+  // checkBoxes.addEventListener('click', (event) => {
+  //   if ('input:checked') {
+  //     console.log('Checked');
+  //   }
+  // })
+
+  console.log(checkBoxes);
+
+
 </script>
 </body>
 </html>
