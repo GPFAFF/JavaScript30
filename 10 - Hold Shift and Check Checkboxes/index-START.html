@@ -105,29 +105,50 @@
 
 <script>
   const checkBoxes = Array.from(document.getElementsByTagName('input'));
-  let checked = false;
-  console.log(checkBoxes);
+  let lastChecked;
+  //console.log(checkBoxes);
 
-  checkBoxes.forEach((checkbox) => {
-    console.log(checkbox);
-    checkbox.addEventListener('click', (event) => {
-      if ('input') {
-        checkbox.setAttribute('data-value', 'checked');
-      } else {
-        checkbox.removeAttribute('data-value', 'checked');
-      }
-    })
-  });
+  function handleCheck(event) {
+    let inBetween = false;
+    if (event.shiftKey && this.checked) {
 
+      checkBoxes.forEach(checkbox => {
+        console.log(checkbox);
+        if (checkbox === this || checkbox === lastChecked) {
+          console.log('checking')
+          inBetween = !inBetween;
+        }
+        if (inBetween) {
+          checkbox.checked = true;
+        } else {
+          checkbox.checked = false;
+        }
+      });
+    }
+    lastChecked = this;
+  }
 
-  // checkBoxes.addEventListener('click', (event) => {
-  //   if ('input:checked') {
-  //     console.log('Checked');
-  //   }
-  // })
-
-  console.log(checkBoxes);
-
+  checkBoxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+  // checkBoxes.forEach((checkbox) => {
+  //
+  //   checkbox.addEventListener('click', (event) => {
+  //     if (checkbox.getAttribute('data-value', 'checked')) {
+  //       checkbox.removeAttribute('data-value', 'checked');
+  //     } else {
+  //       checkbox.setAttribute('data-value', 'checked');
+  //     }
+  //   });
+  //
+  //   checkbox.addEventListener('keyup', (event) => {
+  //     if (event.which === 16) {
+  //       checkBoxes.forEach((checkbox) => {
+  //         // if (checkbox.getAttribute('data-value', 'checked')) {
+  //           console.log(checkBoxes);
+  //         // }
+  //       });
+  //     }
+  //   })
+  // });
 
 </script>
 </body>
