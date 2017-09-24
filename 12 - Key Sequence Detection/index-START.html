@@ -9,6 +9,7 @@
   body, html {
     padding: 0;
     margin: 0;
+    font-family: interstate;
   }
   .container.active {
     background: url('http://images.performgroup.com/di/library/sporting_news/d3/54/indianshomefield-getty-ftr-102616jpg_88gp8q9zqib816isdwtap1zin.jpg?t=43302008');
@@ -16,13 +17,22 @@
     transition: .25s ease-in-out;
   }
 
- .container.active h1, .title {
+  .container .title {
+    color: black;
+  }
+
+ .container.active h1, .container.active .title {
     color: white;
   }
 
   .container {
     padding: 40px;
     height: 700px;
+  }
+
+  .secret_test {
+    appearance: none;
+    padding: 10px;
   }
 
 </style>
@@ -51,7 +61,6 @@
   function inputChange(code) {
     input.addEventListener('change', (event) => {
       console.log(code);
-      title.innerHTML = code.join(" ");
 
       if (input.value.length === 0) {
         container.classList.remove('active');
@@ -60,6 +69,8 @@
   }
 
   function secretCodeCheck(code) {
+
+    title.innerHTML = code.join(" ");
 
     pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
 
