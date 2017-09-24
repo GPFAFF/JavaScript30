@@ -5,8 +5,69 @@
   <title>Key Detection</title>
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
+<style>
+  body, html {
+    padding: 0;
+    margin: 0;
+  }
+  .container.active {
+    background: url('http://images.performgroup.com/di/library/sporting_news/d3/54/indianshomefield-getty-ftr-102616jpg_88gp8q9zqib816isdwtap1zin.jpg?t=43302008');
+    background-size: cover;
+    transition: .25s ease-in-out;
+  }
+
+ .container.active h1, .title {
+    color: white;
+  }
+
+  .container {
+    padding: 40px;
+    height: 700px;
+  }
+
+</style>
 <body>
+  <div class="container">
+    <h1>What is the secret code?</h1>
+    <input type="text" class='secret_test' placeholder='Enter Secret Code' />
+    <span class="title"></span>
+  </div>
 <script>
+
+  const pressed = [];
+  const secretCode = 'rolltribe';
+  const title = document.querySelector('.title');
+  const input = document.querySelector('.secret_test');
+  const container = document.querySelector('.container');
+
+  input.addEventListener('keyup', (event) => {
+    const target = event.key;
+    pressed.push(target);
+
+    inputChange(pressed);
+    secretCodeCheck(pressed);
+  });
+
+  function inputChange(code) {
+    input.addEventListener('change', (event) => {
+      console.log(code);
+      title.innerHTML = code.join(" ");
+
+      if (input.value.length === 0) {
+        container.classList.remove('active');
+      }
+    });
+  }
+
+  function secretCodeCheck(code) {
+
+    pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+
+    if (pressed.join('').includes(secretCode)) {
+      container.classList.add('active');
+    };
+  }
+
 </script>
 </body>
 </html>
