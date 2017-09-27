@@ -17,11 +17,14 @@
     transition: .25s ease-in-out;
   }
 
-  .container .title {
+  .container .title, h1 {
     color: black;
+    text-shadow: 1px 1px 1px gray;
+    text-transform: uppercase;
   }
 
  .container.active h1, .container.active .title {
+    text-shadow: 2px 2px 2px black;
     color: white;
   }
 
@@ -33,6 +36,7 @@
   .secret_test {
     appearance: none;
     padding: 10px;
+    text-transform: uppercase;
   }
 
 </style>
