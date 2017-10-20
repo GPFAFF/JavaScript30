@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Parallax for Designers</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+  <div id="page">
+    <div class="block one">
+      <div class="container">
+        <div class="moving left"></div>
+        <h2>Picture</h2>
+        <div class="moving right"></div>
+      </div>
+    </div>
+    <div class="block two">
+      <div class="container">
+        <div class="moving left"></div>
+        <h2>Me</h2>
+        <div class="moving right"></div>
+      </div>
+    </div>
+    <div class="block three">
+      <div class="container">
+        <div class="moving left"></div>
+        <h2>Scrolling</h2>
+        <div class="moving right"></div>
+      </div>
+    </div>
+    <div class="block four">
+      <div class="container">
+        <div class="moving left"></div>
+        <h2>Picture</h2>
+        <div class="moving right"></div>
+      </div>
+    </div>
+    <div class="block five">
+      <div class="container">
+        <div class="moving left"></div>
+        <h2>Me</h2>
+        <div class="moving right"></div>
+      </div>
+    </div>
+    <div class="block six">
+        <div class="container">
+          <div class="moving left"></div>
+          <h2>Scrolling</h2>
+          <div class="moving right"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+
+  function debounce(func, wait = 20, immediate = true) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
+
+  function isVisible(element, onActive, onOff) {
+    const elementBox = element.getBoundingClientRect();
+    const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    const slideInAt = viewHeight - (elementBox.height / 2);
+    const isHalfShown = slideInAt > elementBox.top;
+    const isNotScrolledPast = elementBox.bottom > 0;
+    if (isHalfShown && isNotScrolledPast) {
+      element.classList.add('parallax');
+      if (typeof onActive === 'function') {
+        onActive();
+      }
+    } else {
+      element.classList.remove('parallax');
+      if (typeof onOff === 'function') {
+        onOff();
+      }
+    }
+  }
+
+  function parallaxMe() {
+    const moveables = [].slice.call(document.querySelectorAll('.moving'));
+
+    moveables.forEach((image) => {
+      isVisible(image,
+        () => {
+          if (image.classList.contains('right')) {
+            const parallaxUp = 'translateX(-30px) translateY(-50px)'
+            //const parallaxUp = `translateY(-50px)`
+            //const parallaxUp = `translateZ(50px) rotateY(-10deg) rotateX(-10deg)`;
+            image.style.transform = parallaxUp;
+            image.style.transition = `.5s ease-in`;
+          } else {
+            //const parallaxDown = `translateY(50px)`
+            //const parallaxDown = `translate3d(0, 0, 0)`
+            const parallaxDown = 'translateX(30px) translateY(50px)'
+            image.style.transform = parallaxDown;
+            image.style.transition = `.5s cubic-bezier(.41,.07,.62,.91)`;
+          }
+        },
+        () => {
+          const parallaxEffect = `translate3d(0px, 0, 0)`;
+          image.style.transform = parallaxEffect;
+          image.style.transition = `.5s cubic-bezier(.41,.07,.62,.91)`;
+        },
+      );
+    })
+
+  }
+
+  window.addEventListener('scroll', debounce(parallaxMe, 16));
+
+</script>
+
+</html>
