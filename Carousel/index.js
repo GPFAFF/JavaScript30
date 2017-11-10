@@ -1,18 +1,14 @@
-const buttons = document.querySelectorAll('.page');
-
+const buttons = [].slice.call(document.querySelectorAll('.page'));
+let active = false;
 
 const activeButtons = (e) => {
-  let active = false;
   console.log("i hate js")
   console.log(active);
   if (active == true) {
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove('active');
-    }
+    buttons.forEach(button => button.classList.remove('active'));
+  }
   const target = e.target;
   target.classList.add('active');
-
-  }
   active = true;
 }
 
