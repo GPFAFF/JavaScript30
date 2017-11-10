@@ -1,0 +1,81 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main {
+  background-color: gray;
+  height: 850px;
+  padding: 40px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.card_carousel_container {
+  position: relative;
+  height: 450px;
+}
+
+.card {
+  width: 300px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 100px;
+  margin-left: -125px;
+}
+
+.card_pagination {
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  grid-auto-rows: auto;
+  grid-gap: 1em;
+  padding: 20px;
+}
+
+.page {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.card.one {
+  left: 60%;
+  right: 0;
+  top: 30px;
+  transform: rotate(-12deg);
+
+}
+
+.card.two {
+  left: 60%;
+  right: 0;
+  top: 155px;
+  transform: rotate(12deg);
+}
+
+.card.three {
+  left: 40%;
+  right: 0;
+  top: 55px;
+  transform: rotate(-3deg);
+}
+
+.card.four {
+  left: 35%;
+  right: 0;
+  top: 140px;
+  transform: rotate(3deg);
+}
+.page:hover {
+  cursor: pointer;
+}
+
+.page.active {
+  background-color: red;
+}
