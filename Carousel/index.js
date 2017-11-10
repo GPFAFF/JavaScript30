@@ -1,20 +1,39 @@
 const buttons = [].slice.call(document.querySelectorAll('.page'));
+const cards = [].slice.call(document.querySelectorAll('.card'));
+
 let active = false;
 
-const activeButtons = (e) => {
-  console.log("i hate js")
-  console.log(active);
-  if (active == true) {
-    buttons.forEach(button => button.classList.remove('active'));
-  }
-  const target = e.target;
-  target.classList.add('active');
-  active = true;
+const activeCards = (event) => {
+  cards.forEach(card => {
+    console.log(card.getAttribute('data-id'))
+    if (card.getAttribute('data-id') === event.getAttribute('data-id')) {
+        card.style.zIndex = "1"
+        card.classList.add('active');
+        card.setAttribute('aria-selected', 'true');
+    } else {
+        card.style.zIndex = "0"
+        card.classList.remove('active');
+        card.setAttribute('aria-selected', 'false');
+    }
+  })
 }
 
-buttons.forEach(function (event) {
-  event.addEventListener('click', activeButtons);
-})
+const activeButtons = (event) => {
+  if (active == true) {
+    activeCards(event.target)
+    buttons.forEach(button => {
+      button.classList.remove('active')
+      button.setAttribute('aria-selected', 'false');
+    });
+  }
+  active = true;
+  const activeButton = event.target;
+
+  activeButton.classList.add('active');
+  activeButton.setAttribute('aria-selected', 'true');
+}
+
+buttons.forEach(button => button.addEventListener('click', activeButtons));
 
 
 
