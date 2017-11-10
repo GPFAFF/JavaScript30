@@ -30,7 +30,7 @@
               <img src="img/shape_2.svg" />
           </div>
           <div class="phone_container">
-            <img alt="phone" src="img/phone.png" class="phone"/>
+            <img alt="phone" src="img/phone.png" class="phone moving"/>
             <img alt="phone shadow" src="img/phone_shadow.png" class="shadow"/>
           </div>
           <div class="animate moving up">
@@ -46,34 +46,22 @@
     <div class="block three">
       <div class="container">
 
-        <div class="animation-container">
-          <div class="moving left"></div>
-            <h2>Scrolling</h2>
-          <div class="moving right"></div>
-        </div>
-
         <div class="block four">
           <div class="container">
-            <div class="moving left"></div>
-            <h2>Picture</h2>
-            <div class="moving right"></div>
+
           </div>
         </div>
 
       <div class="block five">
         <div class="container">
-          <div class="moving left"></div>
-          <h2>Me</h2>
-          <div class="moving right"></div>
+
         </div>
       </div>
       <div class="block six">
-          <div class="container">
-            <div class="moving left"></div>
-            <h2>Scrolling</h2>
-            <div class="moving right"></div>
-          </div>
+        <div class="container">
+
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -142,6 +130,10 @@
           } else if (image.classList.contains('left')) {
               const parallaxLeft = 'translateX(130px) translateY(50px)'
               image.style.transform = parallaxLeft;
+              image.style.transition = `1s ease-in`;
+          } else if (image.classList.contains('phone')) {
+              const parallaxPhone = 'translateX(-30px) translateY(50px)'
+              image.style.transform = parallaxPhone;
               image.style.transition = `1s ease-in`;
           }
         },
