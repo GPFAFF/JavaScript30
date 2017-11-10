@@ -5,31 +5,29 @@ html, body {
 }
 
 main {
-  background-color: gray;
+  background-color: #eee;
   height: 850px;
   padding: 40px;
 }
 
 h1 {
   margin: 0;
+  text-align: center;
+  font-family: arial;
+  text-shadow: 1px 0px 5px gray;
 }
 
 .card_carousel_container {
   position: relative;
   height: 450px;
+  margin: 40px;
 }
 
 .card {
   width: 300px;
   height: auto;
-  position: absolute;
-  left: 50%;
-  right: 0;
-  top: 100px;
-  margin-left: -125px;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0, 0, 0, 0);
-
 }
 
 .card_pagination {
@@ -38,6 +36,46 @@ h1 {
   grid-auto-rows: auto;
   grid-gap: 1em;
   padding: 20px;
+  grid-column: 4;
+  grid-row: 4;
+}
+
+.card.active {
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(.17, .67, .92, .3);
+}
+
+.card_container {
+  position: relative;
+  height: 450px;
+  margin: 40px;
+  display: grid;
+  grid-template-columns: repeat(8, 80px) 20%;
+  grid-template-rows: 20% auto 200px;
+}
+
+.card.one {
+  grid-column: 3;
+  grid-row: 1;
+  transform: rotate(-12deg);
+}
+
+.card.two {
+  grid-column: 3;
+  grid-row: 2;
+  transform: rotate(12deg);
+}
+
+.card.three {
+  grid-column: 4;
+  grid-row: 2;
+  transform: rotate(-3deg);
+}
+
+.card.four {
+  grid-column: 2;
+  grid-row: 2;
+  transform: rotate(3deg);
 }
 
 .page {
@@ -47,41 +85,6 @@ h1 {
   background-color: black;
 }
 
-.card.active {
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(.17, .67, .92, .3);
-}
-
-
-
-.card.one {
-  left: 60%;
-  right: 0;
-  top: 30px;
-  transform: rotate(-12deg);
-
-}
-
-.card.two {
-  left: 60%;
-  right: 0;
-  top: 155px;
-  transform: rotate(12deg);
-}
-
-.card.three {
-  left: 40%;
-  right: 0;
-  top: 55px;
-  transform: rotate(-3deg);
-}
-
-.card.four {
-  left: 35%;
-  right: 0;
-  top: 140px;
-  transform: rotate(3deg);
-}
 .page:hover {
   cursor: pointer;
 }
