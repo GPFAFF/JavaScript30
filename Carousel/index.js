@@ -11,12 +11,11 @@ const activeCards = (event) => {
         card.classList.add('active');
         card.setAttribute('aria-selected', 'true');
         const random = Math.random() * 20 - 10;
-        card.style.transform = `rotate(${random}deg) scale(1.15)`
+        card.style.transform = `rotate(${random}deg) scale(1)`
     } else {
         card.style.zIndex = "0"
         card.classList.remove('active');
         card.setAttribute('aria-selected', 'false');
-        card.style.transform = 'rotate(0deg) scale(1)';
     }
   })
 }

@@ -56,7 +56,7 @@ h1 {
 
 .card.one {
   grid-column: 3;
-  grid-row: 1;
+  grid-row: 2;
   transform: rotate(-12deg);
 }
 
