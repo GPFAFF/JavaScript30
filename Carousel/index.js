@@ -2,6 +2,13 @@ const buttons = [].slice.call(document.querySelectorAll('.page'));
 const cards = [].slice.call(document.querySelectorAll('.card'));
 
 let active = false;
+let paused = false;
+
+const rotateCards = () => {
+  if (!paused) {
+
+  }
+}
 
 const activeCards = (event) => {
   cards.forEach(card => {
@@ -22,6 +29,8 @@ const activeCards = (event) => {
 
 const activeButtons = (event) => {
   if (active == true) {
+    paused = true;
+    debugger;
     activeCards(event.target)
     buttons.forEach(button => {
       button.classList.remove('active')
