@@ -1,96 +1,81 @@
+const cardCarousel = document.querySelector('.card_container');
 const buttons = [].slice.call(document.querySelectorAll('.page'));
 const cards = [].slice.call(document.querySelectorAll('.card'));
 
-let active = false;
+let count = 0;
+let previous;
 let paused = false;
+let carouselInterval;
 
-const rotateCards = () => {
-  if (!paused) {
+const onLoad = () => {
+  buttons[0].classList.add('active');
+  cards[0].classList.add('active');
+  setTimeout(() => {
+    console.log('👀 👀 👀 👀 👀');
+    playAnimation();
+  }, 100);
+}
 
-  }
+function stopAnimation(cardCarousel) {
+  console.log('⏱⏱⏱⏱⏱⏱⏱⏱');
+  cardCarousel.classList.add('paused');
+  return clearInterval(carouselInterval);
+}
+
+function playAnimation() {
+  console.log('🏃🏃🏃🏃🏃🏃🏃🏃🏃');
+  clearInterval(carouselInterval);
+  carouselInterval = setInterval(() => {
+    autoLoop();
+  }, 2500);
 }
 
 const activeCards = (event) => {
-  cards.forEach(card => {
-    console.log(card.getAttribute('data-id'))
+  cards.forEach((card) => {
     if (card.getAttribute('data-id') === event.getAttribute('data-id')) {
-        card.style.zIndex = "1"
-        card.classList.add('active');
-        card.setAttribute('aria-selected', 'true');
-        const random = Math.random() * 20 - 10;
-        card.style.transform = `rotate(${random}deg) scale(1)`
+      card.classList.add('active');
     } else {
-        card.style.zIndex = "0"
-        card.classList.remove('active');
-        card.setAttribute('aria-selected', 'false');
+      card.classList.remove('active');
     }
-  })
-}
+  });
+};
 
 const activeButtons = (event) => {
-  if (active == true) {
-    paused = true;
-    debugger;
-    activeCards(event.target)
-    buttons.forEach(button => {
-      button.classList.remove('active')
-      button.setAttribute('aria-selected', 'false');
-    });
-  }
-  active = true;
-  const activeButton = event.target;
+  paused = true;
+  event.preventDefault();
 
+  if (paused) {
+    stopAnimation(cardCarousel);
+  }
+
+  buttons.forEach((button) => {
+    button.classList.remove('active');
+    button.setAttribute('aria-selected', 'false');
+  });
+
+  const activeButton = event.target;
+  activeCards(activeButton);
   activeButton.classList.add('active');
   activeButton.setAttribute('aria-selected', 'true');
+};
+
+function autoLoop() {
+  previous = count > 0 ? count - 1 : 0;
+  buttons[previous].classList.toggle('active');
+  cards[previous].classList.toggle('active');
+
+  if (count < buttons.length) {
+    buttons[count].classList.add('active');
+    cards[count].classList.add('active');
+    count++;
+  } else {
+    count = 0;
+    autoLoop();
+  }
 }
+
+function startListening() { window.addEventListener('load', onLoad); }
 
 buttons.forEach(button => button.addEventListener('click', activeButtons));
 
-
-
-// var $carousel = $(".js-carousel");
-// var $carouselList = $(".js-carousel-list");
-// var $carouselItem = $(".js-carousel-item");
-
-// var $btnNext = $(".js-carousel-btnNext");
-// var $btnPrev = $(".js-carousel-btnPrev");
-
-// var $pagItem = $(".js-carousel-pagItem");
-// var $btnPag = $(".js-carousel-btnPag");
-
-// var activeIndex = 0;
-// var maxIndex = $carouselItem.length - 1;
-
-// var layout = function () {
-//   $carouselItem.attr("aria-hidden", "true");
-//   $carouselItem.eq(activeIndex).attr("aria-hidden", "false");
-
-//   $btnPag.attr("aria-selected", "false");
-//   $btnPag.eq(activeIndex).attr("aria-selected", "true");
-// };
-
-// var onNext = function () {
-//   if (activeIndex !== maxIndex) {
-//     activeIndex++;
-//     layout();
-//   }
-// };
-
-// var onPrev = function () {
-//   if (activeIndex !== 0) {
-//     activeIndex--;
-//     layout();
-//   }
-// };
-
-// var onPag = function (event) {
-//   element = event.currentTarget;
-//   activeIndex = $btnPag.index(element);
-//   layout();
-// };
-
-// $btnNext.on("click", onNext);
-// $btnPrev.on("click", onPrev);
-// $btnPag.on("click", onPag);
-
-// layout();
+startListening();
